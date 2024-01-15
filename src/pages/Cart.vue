@@ -480,96 +480,84 @@
 </template>
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
-import { useRouter } from 'vue-router';
-import { PropType } from "vue/dist/vue.js";
+import { defineComponent, PropType } from "vue";
 
-// Define an interface for the
 interface Product {
-id: number;
-name: string;
-imageSrc: string;
-imageAlt: string;
-price: string;
-// Add any additional fields that are used in the component
+  id: number;
+  name: string;
+  imageSrc: string;
+  imageAlt: string;
+  price: string;
+  // Přidejte další pole, pokud jsou potřeba
 }
 
-// Define an interface for the form data structure
 interface FormData {
-email: string;
-firstName: string;
-lastName: string;
-company: string;
-address: string;
-apartment: string;
-city: string;
-country: string;
-region: string;
-postalCode: string;
-phone: string;
-paymentType: string;
-cardNumber: string;
-nameOnCard: string;
-expirationDate: string;
-cvc: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  company: string;
+  address: string;
+  apartment: string;
+  city: string;
+  country: string;
+  region: string;
+  postalCode: string;
+  phone: string;
+  paymentType: string;
+  cardNumber: string;
+  nameOnCard: string;
+  expirationDate: string;
+  cvc: string;
+  // Přidejte další pole, pokud jsou potřeba
 }
 
-export default {
-components: {},
-
-props: {
-addedToCart: {
-type: Array as PropType<Product[]>,
-required: true,
+export default defineComponent({
+  props: {
+    addedToCart: {
+      type: Array as PropType<Product[]>,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      allProducts: [] as Product[],
+      totalPrice: 0,
+      formData: {
+        email: "",
+        // ... ostatní formulářová data
+      } as FormData,
+    };
+  },
+  methods: {
+    removeFromCart(product: Product) {
+      useCart().remove(product);
+    },
+    submitForm() {
+      const cart = useCart();
+      cart.addFormData(this.formData);
+      this.$router.push({ name: 'summary' }).catch(err => {
+        console.error(err);
+      });
+    },
+  },
+  mounted() {
+    const cartStore = useCart();
+    this.allProducts = cartStore.cart;
+  },
+  computed: {
+  totalPrice(): number {
+    console.log('All products:', this.allProducts);
+    const total = this.allProducts.reduce((sum, item) => {
+      const price = parseFloat(item.price.replace("$", ""));
+      return sum + price;
+    }, 0);
+    console.log('Total price:', total);
+    return total;
+  },
 },
-},
-
-data() {
-return {
-allProducts: [] as Product[],
-totalPrice: 0,
-formData: {
-email: "",
-firstName: "",
-lastName: "",
-company: "",
-address: "",
-apartment: "",
-city: "",
-country: "",
-region: "",
-postalCode: "",
-phone: "",
-paymentType: "",
-cardNumber: "",
-nameOnCard: "",
-expirationDate: "",
-cvc: "",
-} as FormData,
-};
-},
-methods: {
-removeFromCart(product: Product) {
-useCart().remove(product);
-},
-submitForm(e: Event) {
-e.preventDefault();
-// Push to /summary route
-useCart().addFormData(this.formData);
-useRouter().push("/summary");
-},
-},
-mounted() {
-const cartStore = useCart();
-this.allProducts = cartStore.cart;
-},
-
-computed: {
-totalPrice(): number {
-return this.allProducts.reduce((sum, item) => {
-const price = parseFloat(item.price.replace("$", ""));
-return sum + price;
-}, 0);
-},
-},
-};
+});
 </script>
+
+<style>
+  /* Váš CSS kód pro stylování komponenty */
+</style>

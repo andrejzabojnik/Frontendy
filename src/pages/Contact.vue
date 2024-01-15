@@ -9,8 +9,8 @@
     </div>
     <div class="mx-auto max-w-xl lg:max-w-4xl">
       <h2 class="text-4xl font-bold tracking-tight text-gray-900">
-        Nemame ziadne problemy
-        <span class="text-primary underline">Porozpravajte sa s nami</span>
+        Máte nejaké otázky ohladom vašej objednávky?
+        <span class="text-primary underline">Kontaktujte nás!</span>
       </h2>
 
       <div class="mt-16 flex flex-col gap-16 sm:gap-y-20 lg:flex-row">
@@ -54,7 +54,7 @@
               <label
                 for="budget"
                 class="block text-sm font-semibold leading-6 text-gray-900"
-                >Order Id</label
+                >ID objednavky</label
               >
               <div class="mt-2.5">
                 <input
@@ -74,9 +74,9 @@
               >
               <div class="mt-2.5">
                 <input
-                  type="url"
-                  name="website"
-                  id="website"
+                  type="text"
+                  name="address"
+                  id="address"
                   autocomplete="url"
                   v-model="formData.address"
                   class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

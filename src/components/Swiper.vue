@@ -62,44 +62,40 @@ export default {
     return {
       modules: [Autoplay, Pagination, Navigation],
       products: [
-        {
-          id: 1,
-          name: "Black Glasses",
+      {
+          id: 5,
+          name: "MirrorFlash",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1614715838608-dd527c46231d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
+          imageSrc: "src/img/man5.jpg",
           imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
+          price: "$75",
+          color: "Purple",
+        },
+        {
+          id: 6,
+          name: "RiverView",
+          href: "#",
+          imageSrc: "src/img/man6.jpg",
+          imageAlt: "RiverView okuliare",
+          price: "$70",
           color: "Black",
         },
         {
           id: 1,
-          name: "Black Glasses",
+          name: "Graceful Glance",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1603578119639-798b8413d8d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
+          imageSrc: "src/img/woman1.jpg",
+          imageAlt: "Graceful Glance okuliare",
+          price: "$99",
+          color: "Blue",
         },
         {
-          id: 1,
-          name: "Black Glasses",
+          id: 5,
+          name: "Vogue Vista",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1608906709312-fe17f7c1a5a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
-        },
-        {
-          id: 1,
-          name: "Black Glasses",
-          href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1588516190914-d96236c7b7ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdsYXNzZXMlMjBmcmFtZXxlbnwwfHwwfHx8MA%3D%3D",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
+          imageSrc: "src/img/woman5.jpg",
+          imageAlt: "Vogue Vista okuliare",
+          price: "$56",
           color: "Black",
         },
 

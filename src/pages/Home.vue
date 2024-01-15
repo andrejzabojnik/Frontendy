@@ -92,48 +92,43 @@ export default {
     return {
       addedToCart: [],
       products: [
-        {
-          id: 1,
-          name: "Black Glasses",
+      {
+          id: 2,
+          name: "Sunset Diva",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1614715838608-dd527c46231d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
+          imageSrc: "src/img/woman2.jpg",
+          imageAlt: "Sunset Diva okuliare",
+          price: "$89",
+          color: "Orange",
         },
         {
-          id: 1,
-          name: "Black Glasses",
+          id: 4,
+          name: "Breeze Whisperer",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1603578119639-798b8413d8d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
+          imageSrc: "src/img/woman4.jpg",
+          imageAlt: "Breeze Whisperer okuliare",
+          price: "$75",
+          color: "Pink",
         },
         {
-          id: 1,
-          name: "Black Glasses",
+          id: 7,
+          name: "PeakSight",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1608906709312-fe17f7c1a5a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z2xhc3NlcyUyMGZyYW1lfGVufDB8fDB8fHww",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
+          imageSrc: "src/img/man7.jpg",
+          imageAlt: "PeakSight okuliare",
+          price: "$65",
+          color: "Gold",
         },
         {
-          id: 1,
-          name: "Black Glasses",
+          id: 4,
+          name: "ChillWave",
           href: "#",
-          imageSrc:
-            "https://images.unsplash.com/photo-1588516190914-d96236c7b7ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdsYXNzZXMlMjBmcmFtZXxlbnwwfHwwfHx8MA%3D%3D",
-          imageAlt: "Front of men's Basic Tee in black.",
-          price: "$100",
-          color: "Black",
+          imageSrc: "src/img/man4.jpg",
+          imageAlt: "ChillWave okuliare",
+          price: "$80",
+          color: "Brown",
         },
 
-        // More products...
       ],
     };
   },
