@@ -481,6 +481,8 @@
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
 
+
+
 export default {
   components: {},
 
@@ -532,12 +534,13 @@ export default {
   },
 
   computed: {
-    totalPrice() {
-      return this.allProducts.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace("$", ""));
-        return sum + price;
-      }, 0);
-    },
-  },
+  totalPrice(): number {
+    return this.allProducts.reduce((sum, item) => {
+      const price = parseFloat(item.price.replace("$", ""));
+      return sum + price;
+    }, 0);
+  }
+}
+,
 };
 </script>

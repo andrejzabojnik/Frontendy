@@ -181,12 +181,13 @@ export default {
   },
 
   computed: {
-    totalPrice() {
-      return this.allProducts.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace("$", ""));
-        return sum + price;
-      }, 0);
-    },
-  },
+  totalPrice(): number {
+    return this.allProducts.reduce((sum, item) => {
+      const price = parseFloat(item.price.replace("$", ""));
+      return sum + price;
+    }, 0);
+  }
+}
+,
 };
 </script>
