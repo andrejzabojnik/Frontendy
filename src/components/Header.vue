@@ -40,7 +40,7 @@
         aria-controls="navbar-default"
         aria-expanded="false"
       >
-        <span class="sr-only">Open main menu</span>
+        <span class="sr-only">Otvoriť hlavné menu</span>
         <svg
           class="w-5 h-5"
           aria-hidden="true"
@@ -82,19 +82,19 @@ export default {
       all: useCart().cart.length,
       links: [
         {
-          name: "Home",
+          name: "Domov",
           href: "/",
         },
         {
-          name: "Contact Us",
+          name: "Kontakt",
           href: "/contact",
         },
         {
-          name: "All Products",
+          name: "Produkty",
           href: "/products",
         },
         {
-          name: "Go to Cart",
+          name: "Košik",
           href: "/cart",
         },
       ],

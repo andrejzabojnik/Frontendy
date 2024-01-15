@@ -128,44 +128,74 @@
 </template>
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
+import { PropType } from "vue/dist/vue.js";
+
+// Define an interface for the form data structure
+interface Form {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  // ... other fields as needed
+}
+
+// Reuse the Product interface from the Product.vue component
+// Make sure this interface matches the one in Product.vue and includes all necessary fields
+interface Product {
+  id: number;
+  name: string;
+  imageSrc: string;
+  imageAlt: string;
+  color: string;
+  price: string;
+  href: string;
+}
 
 export default {
   components: {},
 
   props: {
     addedToCart: {
-      type: Array,
+      type: Array as PropType<Product[]>,
       required: true,
     },
   },
 
   data() {
     return {
-      allProducts: [],
+      allProducts: [] as Product[],
       totalPrice: 0,
-      form: {},
+      form: {
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        // ... other fields with default values
+      } as Form,
     };
   },
   methods: {
-    removeFromCart(product) {
+    removeFromCart(product: Product) {
       useCart().remove(product);
     },
-    submitForm(e) {
+    submitForm(e: Event) {
       e.preventDefault();
+      // ... form submission logic
     },
   },
   mounted() {
-    this.allProducts = useCart().cart;
-    this.form = useCart().formData;
+    const cartStore = useCart();
+    this.allProducts = cartStore.cart as Product[];
+    this.form = cartStore.formData as Form; // Make sure formData has the structure of Form
   },
 
   computed: {
-  totalPrice(): number {
-    return this.allProducts.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace("$", ""));
-      return sum + price;
-    }, 0);
-  }
-},
+    totalPrice(): number {
+      return this.allProducts.reduce((sum, product) => {
+        const price = parseFloat(product.price.replace("$", ""));
+        return sum + price;
+      }, 0);
+    },
+  },
 };
 </script>

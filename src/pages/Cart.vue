@@ -480,67 +480,96 @@
 </template>
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
+import { useRouter } from 'vue-router';
+import { PropType } from "vue/dist/vue.js";
 
+// Define an interface for the
+interface Product {
+id: number;
+name: string;
+imageSrc: string;
+imageAlt: string;
+price: string;
+// Add any additional fields that are used in the component
+}
 
+// Define an interface for the form data structure
+interface FormData {
+email: string;
+firstName: string;
+lastName: string;
+company: string;
+address: string;
+apartment: string;
+city: string;
+country: string;
+region: string;
+postalCode: string;
+phone: string;
+paymentType: string;
+cardNumber: string;
+nameOnCard: string;
+expirationDate: string;
+cvc: string;
+}
 
 export default {
-  components: {},
+components: {},
 
-  props: {
-    addedToCart: {
-      type: Array,
-      required: true,
-    },
-  },
+props: {
+addedToCart: {
+type: Array as PropType<Product[]>,
+required: true,
+},
+},
 
-  data() {
-    return {
-      allProducts: [],
-      totalPrice: 0,
-      formData: {
-        email: "",
-        firstName: "",
-        lastName: "",
-        company: "",
-        address: "",
-        apartment: "",
-        city: "",
-        country: "",
-        region: "",
-        postalCode: "",
-        phone: "",
-        paymentType: "",
-        cardNumber: "",
-        nameOnCard: "",
-        expirationDate: "",
-        cvc: "",
-      },
-    };
-  },
-  methods: {
-    removeFromCart(product) {
-      useCart().remove(product);
-    },
-    submitForm(e) {
-      e.preventDefault();
-      //push to /summary route
-      useCart().addFormData(this.formData);
+data() {
+return {
+allProducts: [] as Product[],
+totalPrice: 0,
+formData: {
+email: "",
+firstName: "",
+lastName: "",
+company: "",
+address: "",
+apartment: "",
+city: "",
+country: "",
+region: "",
+postalCode: "",
+phone: "",
+paymentType: "",
+cardNumber: "",
+nameOnCard: "",
+expirationDate: "",
+cvc: "",
+} as FormData,
+};
+},
+methods: {
+removeFromCart(product: Product) {
+useCart().remove(product);
+},
+submitForm(e: Event) {
+e.preventDefault();
+// Push to /summary route
+useCart().addFormData(this.formData);
+useRouter().push("/summary");
+},
+},
+mounted() {
+const cartStore = useCart();
+this.allProducts = cartStore.cart;
+},
 
-      this.$router.push("/summary");
-    },
-  },
-  mounted() {
-    this.allProducts = useCart().cart;
-  },
-
-  computed: {
-  totalPrice(): number {
-    return this.allProducts.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace("$", ""));
-      return sum + price;
-    }, 0);
-  }
-}
-,
+computed: {
+totalPrice(): number {
+return this.allProducts.reduce((sum, item) => {
+const price = parseFloat(item.price.replace("$", ""));
+return sum + price;
+}, 0);
+},
+},
 };
 </script>

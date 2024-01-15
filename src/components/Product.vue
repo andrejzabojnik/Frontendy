@@ -13,7 +13,7 @@
       <div>
         <h3 class="text-sm text-gray-700">
           <a :href="product.href">
-            <span aria-hidden="true" class="inset-0" />
+            <span aria-hidden="true" class="inset-0"/>
             {{ product.name }}
           </a>
         </h3>
@@ -27,7 +27,7 @@
       @click="addProductToCart(product)"
       class="px-4 my-4 text-white py-2 bg-primary w-full rounded-full"
     >
-      Add to cart
+      Pridať do košíka
     </button>
     <CartButton :addedToCart="addedToCart" />
   </div>

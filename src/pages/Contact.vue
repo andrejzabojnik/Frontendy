@@ -142,7 +142,7 @@ export default {
 
   data() {
     return {
-      allProducts: [],
+      allProducts: [] as { price: string }[], // Explicitne definovaný typ pre allProducts
       totalPrice: 0,
       success: false,
       form: {},
@@ -156,10 +156,10 @@ export default {
     };
   },
   methods: {
-    removeFromCart(product) {
+    removeFromCart(product: { price: string }) { // Explicitne definovaný typ pre product
       useCart().remove(product);
     },
-    submitForm(e) {
+    submitForm(e: { preventDefault: () => void; }) {
       e.preventDefault();
       this.success = true;
       this.formData = {
@@ -176,18 +176,17 @@ export default {
     },
   },
   mounted() {
-    this.allProducts = useCart().cart;
+    this.allProducts = useCart().cart as { price: string }[]; // Explicitne definovaný typ pre cart
     this.form = useCart().formData;
   },
 
   computed: {
-  totalPrice(): number {
-    return this.allProducts.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace("$", ""));
-      return sum + price;
-    }, 0);
-  }
-}
-,
+    totalPrice(): number {
+      return this.allProducts.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace("$", ""));
+        return sum + price;
+      }, 0);
+    }
+  },
 };
 </script>

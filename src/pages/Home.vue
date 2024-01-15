@@ -9,18 +9,16 @@
           <h1
             class="text-4xl font-bold text-center tracking-tight text-gray-900 sm:text-6xl"
           >
-            Best Store to Buy Glasses Online
+            Najlepšie obchod zo slnečnými okuliarmi na trhu
           </h1>
           <p class="mt-6 text-lg leading-8 text-center text-gray-600">
-            Esse id magna consectetur fugiat non dolor in ad laboris magna
-            laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam
-            voluptate id. In veniam incididunt ex veniam adipisicing sit.
+            Vysoko kvalitné produkty, najlepši material, recyklovatelnosť, minimum uhlíkových stôp
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <router-link
               to="/products"
               class="rounded-full bg-primary px-8 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >Search more for Categories</router-link
+              >Vyhladať viac pre kategorie</router-link
             >
           </div>
         </div>
@@ -32,7 +30,7 @@
         <h2
           class="text-4xl pb-12 text-center font-bold tracking-tight text-gray-900"
         >
-          Best Selling Products
+          Najviac predavane produkty
         </h2>
 
         <div
@@ -70,7 +68,7 @@
             <button
               class="px-4 my-4 text-white py-2 bg-primary w-full rounded-full"
             >
-              Add to cart
+              Pridať do košíka
             </button>
           </div>
         </div>
@@ -140,7 +138,7 @@ export default {
     };
   },
   methods: {
-    addProductToCart(product) {
+    addProductToCart(product: object) {
       const cart = useCart();
       cart.add(product);
       this.addedToCart = cart.cart;
