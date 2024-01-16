@@ -165,9 +165,9 @@
                       autocomplete="country-name"
                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-2 py-1.5 border"
                     >
-                      <option>Spojené štáty</option>
-                      <option>Kanada</option>
-                      <option>Mexiko</option>
+                      <option>Slovenská republika</option>
+                      <option>Česká republika</option>
+       
                     </select>
                   </div>
                 </div>
@@ -358,12 +358,12 @@
 
           <!-- Order summary -->
           <div class="mt-10 lg:mt-0">
-            <h2 class="text-lg font-medium text-gray-900">Order summary</h2>
+            <h2 class="text-lg font-medium text-gray-900">Zhrnutie objednávky</h2>
 
             <div
               class="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm"
             >
-              <h3 class="sr-only">Items in your cart</h3>
+              <h3 class="sr-only">Položky v košíku</h3>
               <ul role="list" class="divide-y divide-gray-200">
                 <li
                   v-for="product in allProducts"
@@ -480,84 +480,89 @@
 </template>
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
-import { defineComponent, PropType } from "vue";
 
-interface Product {
-  id: number;
+// Define the structure of your product items
+interface ProductItem {
   name: string;
-  imageSrc: string;
-  imageAlt: string;
-  price: string;
-  // Přidejte další pole, pokud jsou potřeba
+  href: string; 
+  imageSrc: string; 
+  imageAlt: string; 
+  price: string; 
+  color: string; 
+
+
+
 }
 
-interface FormData {
-  email: string;
-  firstName: string;
-  lastName: string;
-  company: string;
-  address: string;
-  apartment: string;
-  city: string;
-  country: string;
-  region: string;
-  postalCode: string;
-  phone: string;
-  paymentType: string;
-  cardNumber: string;
-  nameOnCard: string;
-  expirationDate: string;
-  cvc: string;
-  // Přidejte další pole, pokud jsou potřeba
-}
+export default {
+  components: {},
 
-export default defineComponent({
   props: {
     addedToCart: {
-      type: Array as PropType<Product[]>,
+      type: Array,
       required: true,
     },
   },
+
   data() {
     return {
-      allProducts: [] as Product[],
+      allProducts: [] as ProductItem[], // Specify that allProducts is an array of ProductItem
       totalPrice: 0,
       formData: {
         email: "",
-        // ... ostatní formulářová data
-      } as FormData,
+        firstName: "",
+        lastName: "",
+        company: "",
+        address: "",
+        apartment: "",
+        city: "",
+        country: "",
+        region: "",
+        postalCode: "",
+        phone: "",
+        paymentType: "",
+        cardNumber: "",
+        nameOnCard: "",
+        expirationDate: "",
+        cvc: "",
+      },
     };
   },
   methods: {
-    removeFromCart(product: Product) {
+    removeFromCart(product: ProductItem) { // Use the ProductItem type here as well
       useCart().remove(product);
     },
-    submitForm() {
-      const cart = useCart();
-      cart.addFormData(this.formData);
-      this.$router.push({ name: 'summary' }).catch(err => {
-        console.error(err);
-      });
+    submitForm(e: { preventDefault: () => void; }) {
+      e.preventDefault();
+      //push to /summary route
+      useCart().addFormData(this.formData);
+
+      this.$router.push("/summary");
     },
   },
   mounted() {
-    const cartStore = useCart();
-    this.allProducts = cartStore.cart;
-  },
-  computed: {
-  totalPrice(): number {
-    console.log('All products:', this.allProducts);
-    const total = this.allProducts.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace("$", ""));
-      return sum + price;
-    }, 0);
-    console.log('Total price:', total);
-    return total;
-  },
+    this.allProducts = useCart().cart as ProductItem[]; // Cast to ProductItem[] if necessary
+ 
 },
-});
+
+computed: {
+totalPrice(): number {
+return this.allProducts.reduce((sum: number, item: ProductItem) => {
+const price = parseFloat(item.price.replace("$", ""));
+return sum + price;
+}, 0);
+},
+},
+};
 </script>
 
 <style>
   /* Váš CSS kód pro stylování komponenty */
 </style>
+
+
+
+
+
+
+

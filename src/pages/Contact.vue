@@ -128,24 +128,10 @@
   </div>
 </template>
 <script lang="ts">
-import { useCart } from "@/pinia/cart";
-
 export default {
-  components: {},
-
-  props: {
-    addedToCart: {
-      type: Array,
-      required: true,
-    },
-  },
-
   data() {
     return {
-      allProducts: [] as { price: string }[], // Explicitne definovaný typ pre allProducts
-      totalPrice: 0,
       success: false,
-      form: {},
       formData: {
         firstName: "",
         lastName: "",
@@ -156,12 +142,11 @@ export default {
     };
   },
   methods: {
-    removeFromCart(product: { price: string }) { // Explicitne definovaný typ pre product
-      useCart().remove(product);
-    },
-    submitForm(e: { preventDefault: () => void; }) {
+    submitForm(e: Event) {
       e.preventDefault();
       this.success = true;
+      // Here you would typically send the formData to your server
+      // Reset formData after submission or handle as needed
       this.formData = {
         firstName: "",
         lastName: "",
@@ -169,24 +154,11 @@ export default {
         address: "",
         message: "",
       };
-
+      // Display success message for 5 seconds
       setTimeout(() => {
         this.success = false;
       }, 5000);
     },
-  },
-  mounted() {
-    this.allProducts = useCart().cart as { price: string }[]; // Explicitne definovaný typ pre cart
-    this.form = useCart().formData;
-  },
-
-  computed: {
-    totalPrice(): number {
-      return this.allProducts.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace("$", ""));
-        return sum + price;
-      }, 0);
-    }
   },
 };
 </script>

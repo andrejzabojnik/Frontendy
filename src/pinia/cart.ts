@@ -6,7 +6,6 @@ export const useCart = defineStore("cart", {
     formData: {},
   }),
   actions: {
-    // since we rely on `this`, we cannot use an arrow function
     add(item: object) {
       this.cart.push(item);
     },

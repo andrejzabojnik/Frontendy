@@ -99,10 +99,8 @@ export default {
           color: "Black",
         },
 
-        // More products...
       ],
       breakpoints: {
-        // Customize breakpoints based on your design requirements
         768: {
           slidesPerView: 2,
         },
