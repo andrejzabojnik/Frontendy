@@ -15,8 +15,6 @@ export const useCart = defineStore("cart", {
     },
 
     addFormData(data: object) {
-      console.log(data);
-
       this.formData = data;
     },
   },
