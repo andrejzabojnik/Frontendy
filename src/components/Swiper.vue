@@ -22,35 +22,24 @@
       class="bg-center bg-no-repeat bg-cover relative"
       :style="[`background-image: url(${img.imageSrc})`]"
     >
-      <!-- <img class="object-cover bg-center" :src="img.imageSrc" alt="" /> -->
-      <div
-        class="max-w-7xl mx-auto py-32 flex flex-col space-y-4 items-start h-full justify-start px-4"
-      >
+      <div class="max-w-7xl mx-auto py-32 flex flex-col space-y-4 items-start h-full justify-start px-4">
         <div class="flex flex-col items-start space-y-3 bg-primary p-4">
           <h1 class="text-3xl font-bold text-white">{{ img.name }}</h1>
           <p class="text-gray-100">{{ img.price }}</p>
-
-          <router-link
-            to="/products"
-            class="bg-gray-400 px-4 py-1.5 rounded-sm text-primary"
-            >Najdi viac produktov</router-link
-          >
+          <router-link to="/products" class="bg-gray-400 px-4 py-1.5 rounded-sm text-primary">
+            Najdi viac produktov
+          </router-link>
         </div>
       </div>
     </swiper-slide>
   </swiper>
 </template>
+
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export default {
@@ -58,11 +47,11 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  setup() {
+  data() {
     return {
       modules: [Autoplay, Pagination, Navigation],
       products: [
-      {
+        {
           id: 5,
           name: "MirrorFlash",
           href: "#",
@@ -98,7 +87,6 @@ export default {
           price: "$56",
           color: "Black",
         },
-
       ],
       breakpoints: {
         768: {
@@ -112,3 +100,4 @@ export default {
   },
 };
 </script>
+

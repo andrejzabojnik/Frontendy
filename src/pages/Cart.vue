@@ -435,16 +435,12 @@
                   <dt class="text-sm">Doprava</dt>
                   <dd class="text-sm font-medium text-gray-900">$5.00</dd>
                 </div>
-                <div class="flex items-center justify-between">
-                  <dt class="text-sm">Dane</dt>
-                  <dd class="text-sm font-medium text-gray-900">$5.52</dd>
-                </div>
                 <div
                   class="flex items-center justify-between border-t border-gray-200 pt-6"
                 >
                   <dt class="text-base font-medium">Celkom</dt>
                   <dd class="text-base font-medium text-gray-900">
-                    ${{ totalPrice + 5.52 + 5 }}
+                    ${{ totalPrice + 5.52 }}
                   </dd>
                 </div>
               </dl>
@@ -481,7 +477,6 @@
 <script lang="ts">
 import { useCart } from "@/pinia/cart";
 
-// Define the structure of your product items
 interface ProductItem {
   name: string;
   href: string; 
@@ -489,25 +484,16 @@ interface ProductItem {
   imageAlt: string; 
   price: string; 
   color: string; 
-
-
-
 }
 
 export default {
   components: {},
 
-  props: {
-    addedToCart: {
-      type: Array,
-      required: true,
-    },
-  },
+
 
   data() {
     return {
-      allProducts: [] as ProductItem[], // Specify that allProducts is an array of ProductItem
-      totalPrice: 0,
+      allProducts: [] as ProductItem[],
       formData: {
         email: "",
         firstName: "",
@@ -529,36 +515,29 @@ export default {
     };
   },
   methods: {
-    removeFromCart(product: ProductItem) { // Use the ProductItem type here as well
+    removeFromCart(product: ProductItem) {
       useCart().remove(product);
     },
     submitForm(e: { preventDefault: () => void; }) {
       e.preventDefault();
-      //push to /summary route
       useCart().addFormData(this.formData);
-
       this.$router.push("/summary");
     },
   },
   mounted() {
-    this.allProducts = useCart().cart as ProductItem[]; // Cast to ProductItem[] if necessary
- 
-},
+    this.allProducts = useCart().cart as ProductItem[];
+  },
 
-computed: {
-totalPrice(): number {
-return this.allProducts.reduce((sum: number, item: ProductItem) => {
-const price = parseFloat(item.price.replace("$", ""));
-return sum + price;
-}, 0);
-},
-},
+  computed: {
+    totalPrice(): number {
+      return this.allProducts.reduce((sum: number, item: ProductItem) => {
+        const price = parseFloat(item.price.replace("$", ""));
+        return sum + price;
+      }, 0);
+    },
+  },
 };
 </script>
-
-<style>
-  /* Váš CSS kód pro stylování komponenty */
-</style>
 
 
 

@@ -67,12 +67,9 @@ export default defineComponent({
     addProductToCart(product: Product) {
       const cart = useCart();
       cart.add(product);
-      this.addedToCart.push(product); // Add to the local array
+      this.addedToCart.push(product);
     },
   },
 });
 </script>
 
-<style scoped>
-/* Your component-specific styles here */
-</style>

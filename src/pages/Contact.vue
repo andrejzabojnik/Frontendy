@@ -145,8 +145,7 @@ export default {
     submitForm(e: Event) {
       e.preventDefault();
       this.success = true;
-      // Here you would typically send the formData to your server
-      // Reset formData after submission or handle as needed
+
       this.formData = {
         firstName: "",
         lastName: "",
@@ -154,7 +153,6 @@ export default {
         address: "",
         message: "",
       };
-      // Display success message for 5 seconds
       setTimeout(() => {
         this.success = false;
       }, 5000);
